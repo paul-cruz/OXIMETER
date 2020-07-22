@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -18,7 +18,6 @@ import {
     app,
     googleAuthProvider,
 } from "../../resources/firebaseConfig";
-import { Auth } from "../../context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -66,7 +65,6 @@ const MenuIcon = (props) => (
 const Product = ({ history }) => {
     const classes = useStyles();
     const alert = useAlert();
-    const { user } = useContext(Auth);
     const signin = <SignIn />;
     const signup = <SignUp />;
     const passwdrecovery = <PasswdRecovery />;
@@ -75,30 +73,8 @@ const Product = ({ history }) => {
     const [acciontext, setacciontext] = useState("Aún no tienes cuenta? Registrate");
     const [passwddisplay, setpasswddisplay] = useState(true);
 
-    useEffect(() => {
-        if (user) {
-            if (!user.emailVerified) {
-                alert.show('Aún no verifica su correo, para reenviar el correo de verificación presione "Reenviar correo"', {
-                    title: "Correo no verificado!",
-                    closeCopy: "Cancelar",
-                    actions: [
-                        {
-                            copy: "Reenviar correo",
-                            onClick: () => {
-                                app.auth().currentUser.sendEmailVerification({ url: process.env.REACT_APP_URL, });
-                                app.auth().signOut();
-                            }
-                        }
-                    ]
-                });
-            } else {
-                history.push("/");
-            }
-        }
-    }, [history, user, alert]);
-
     function onhandleform() {
-        if (form.type.name === "SignIn") {
+        if (form.type.WrappedComponent.name === "SignIn") {
             setform(signup);
             setpasswddisplay(false);
             setacciontext("Ya tienes cuenta? Inicia Sesión");
