@@ -3,6 +3,8 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { useAlert } from 'react-alert';
+import { app } from "../../../resources/firebaseConfig";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -20,13 +22,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PasswdRecovery = () => {
+    const alert = useAlert();
     const classes = useStyles();
+
+    const resetPasswd = async e => {
+        e.preventDefault();
+        const { email } = e.target.elements;
+        await app.auth().sendPasswordResetEmail(email.value).then(function () {
+            alert.show("Te hemos enviado un correo de recueración", { title: "Enviado!" });
+        }).catch(function (error) {
+            alert.show(error.message, { title: "Error!" });
+        });
+    }
     return (
         <div className={classes.paper}>
             <Typography component="h1" variant="h5">
                 Password Recovery
             </Typography>
-            <form className={classes.form} noValidate>
+            <form className={classes.form} onSubmit={resetPasswd}>
                 <TextField
                     variant="outlined"
                     margin="normal"
