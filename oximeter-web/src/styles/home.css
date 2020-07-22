@@ -1,0 +1,18 @@
+.root {
+  flex-grow: 1;
+}
+
+.appbar {
+  max-width: min-content;
+  margin: 2.5%;
+}
+
+.tabs {
+  color: #302f2f;
+  background-color: #ffffff;
+}
+
+.tab {
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
