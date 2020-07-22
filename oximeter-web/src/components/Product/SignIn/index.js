@@ -41,11 +41,11 @@ const SignIn = ({ history }) => {
                             copy: "Reenviar correo",
                             onClick: () => {
                                 app.auth().currentUser.sendEmailVerification({ url: process.env.REACT_APP_URL, });
-                                app.auth().signOut();
                             }
                         }
                     ]
                 });
+                app.auth().signOut();
             } else {
                 history.push("/");
             }
@@ -69,7 +69,7 @@ const SignIn = ({ history }) => {
     };
 
     return (
-        <div className={classes.paper}>
+        <div className={classes.paper} name="SignIn">
             <Typography component="h1" variant="h5">
                 Sign in
             </Typography>
