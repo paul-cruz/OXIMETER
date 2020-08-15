@@ -8,6 +8,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Toolbar from '@material-ui/core/Toolbar';
 import Product from '../components/Product';
+import Contact from '../components/Contact';
 import background from "../images/fondo.jpg";
 import Logo from '../images/Mexbalia_logo.png';
 
@@ -92,7 +93,7 @@ export default function Home() {
 
                     </TabPanel>
                     <TabPanel value={value} index={2} className="tab">
-
+                        <Contact />
                     </TabPanel>
                 </Grid>
             </Grid>
