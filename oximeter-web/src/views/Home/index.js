@@ -1,24 +1,26 @@
 import React from 'react';
-import '../styles/home.css'
+import '../../styles/home.css'
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
-import Product from '../components/Product';
-import Contact from '../components/Contact';
-import background from "../images/fondo.jpg";
-import Logo from '../images/Mexbalia_logo.png';
+import {
+    Box,
+    AppBar,
+    Tabs,
+    Tab,
+    Grid,
+    Toolbar,
+    makeStyles
+} from '@material-ui/core';
+import Product from '../../components/Product';
+import Contact from '../../components/Contact';
+import Page from "../../components/Page";
+import Logo from '../../images/Mexbalia_logo.png';
+import About from '../../components/About';
 
-const back_style = {
-    backgroundImage: `url(${background})`,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    height: '100vh',
-}
+const useStyles = makeStyles((theme) => ({
+    root: {
+        height: '100%',
+    }
+}));
 
 
 function TabPanel(props) {
@@ -56,6 +58,7 @@ function a11yProps(index) {
 
 
 export default function Home() {
+    const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
@@ -63,7 +66,7 @@ export default function Home() {
     };
 
     return (
-        <div className="root" style={back_style}>
+        <Page title="home" className={classes.root}>
             <Grid container spacing={0} direction="row" justify="center" alignItems="center">
                 <Grid item lg={12} sm={12}>
                     <AppBar position="static" className="appbar" color="inherit" >
@@ -90,13 +93,13 @@ export default function Home() {
                         <Product />
                     </TabPanel>
                     <TabPanel value={value} index={1} className="tab">
-
+                        <About />
                     </TabPanel>
                     <TabPanel value={value} index={2} className="tab">
                         <Contact />
                     </TabPanel>
                 </Grid>
             </Grid>
-        </div>
+        </Page>
     );
 }
