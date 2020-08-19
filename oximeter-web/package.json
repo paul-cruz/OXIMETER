@@ -1,6 +1,6 @@
 {
   "name": "oximeter",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.10.2",
@@ -11,14 +11,19 @@
     "bootstrap": "^4.5.0",
     "env-cmd": "^10.1.0",
     "firebase": "^7.16.0",
+    "history": "^5.0.0",
     "react": "^16.13.1",
     "react-alert": "^7.0.2",
     "react-alert-template-mui": "^1.0.7",
     "react-bootstrap": "^1.2.2",
     "react-dom": "^16.13.1",
+    "react-feather": "^2.0.8",
+    "react-helmet": "^6.1.0",
     "react-icons": "^3.10.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-perfect-scrollbar": "^1.5.8",
+    "react-router": "^6.0.0-beta.0",
+    "react-router-dom": "^6.0.0-beta.0",
+    "react-scripts": "^3.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
