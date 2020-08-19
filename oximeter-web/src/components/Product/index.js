@@ -21,13 +21,16 @@ const Product = () => {
     const [form, setform] = useState(signin);
     const [acciontext, setacciontext] = useState("Aún no tienes cuenta? Registrate");
     const [passwddisplay, setpasswddisplay] = useState(true);
+    const [activeform, setactiveform] = useState("SignIn");
 
     function onhandleform() {
-        if (form.type.name === "SignIn") {
+        if (activeform === "SignIn") {
+            setactiveform("SignUp");
             setform(signup);
             setpasswddisplay(false);
             setacciontext("Ya tienes cuenta? Inicia Sesión");
         } else {
+            setactiveform("SignIn");
             setform(signin);
             setpasswddisplay(true);
             setacciontext("Aún no tienes cuenta? Registrate");
@@ -35,6 +38,7 @@ const Product = () => {
     }
 
     function onhandlepasswd() {
+        setactiveform("PasswdRecovery");
         setform(passwdrecovery);
         setpasswddisplay(false);
         setacciontext("Regresar a Iniciar Sesión");
