@@ -41,14 +41,14 @@ const TopBar = ({
         <img src={Logo} alt="Mexbalia logo" style={{ width: "2.5em" }} />
         </RouterLink>
         <Box flexGrow={1} />
-        <Hidden mdDown>
+        {/*<Hidden mdDown>*/}
           <IconButton
             color="inherit"
             onClick={onLogOut}
           >
             <InputIcon />
           </IconButton>
-        </Hidden>
+        {/*</Hidden>*/}
         <Hidden lgUp>
           <IconButton
             color="inherit"
