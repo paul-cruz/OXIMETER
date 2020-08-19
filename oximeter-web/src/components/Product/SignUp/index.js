@@ -5,7 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { app } from '../../../resources/firebaseConfig';
 import { useAlert } from 'react-alert';
-import { withRouter } from 'react-router';
+import { useNavigate } from 'react-router-dom';
+import { regiterUser } from '../../../utils/firestore';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -15,20 +16,20 @@ const useStyles = makeStyles((theme) => ({
     },
     form: {
         width: '100%',
-        marginTop: theme.spacing(1),
     },
     submit: {
-        margin: theme.spacing(2, 0, 2),
+        margin: theme.spacing(1, 0, 2),
     },
 }));
 
-const SignUp = ({ setsignup, history }) => {
+const SignUp = ({ setsignup }) => {
     const alert = useAlert();
     const classes = useStyles();
+    const navigate = useNavigate();
 
     const handleSignUp = async e => {
         e.preventDefault();
-        const { email, password, password_ver } = e.target.elements;
+        const { name, email, password, password_ver } = e.target.elements;
 
         if (password.value === password_ver.value) {
             await app
@@ -38,19 +39,24 @@ const SignUp = ({ setsignup, history }) => {
                     console.log(result);
                     app.auth().currentUser.sendEmailVerification({ url: process.env.REACT_APP_URL, })
                         .then(() => {
-                            app
-                                .auth()
-                                .signOut()
+                            regiterUser({ uid: app.auth().currentUser.uid, name: name.value, email: email.value })
                                 .then(() => {
-                                    history.push("/VerifyEmail");
+                                    app
+                                        .auth()
+                                        .signOut()
+                                        .then(() => {
+                                            navigate('/VerifyEmail', { replace: true });
+                                        });
+                                }).catch(error => {
+                                    alert.show(error.message, { title: "Error!" });
                                 });
-                        }).catch((err) => { console.log(err);})
+                        }).catch((err) => { alert.show(err.message, { title: "Error!" }); })
                 })
                 .catch(error => {
-                    alert.show(error.message, {title: "Error!"});
+                    alert.show(error.message, { title: "Error!" });
                 });
         } else {
-            alert.show("Las contraseñas deben coincidir", {title: "Error!"});
+            alert.show("Las contraseñas deben coincidir", { title: "Error!" });
         }
     };
 
@@ -118,4 +124,4 @@ const SignUp = ({ setsignup, history }) => {
     );
 }
 
-export default withRouter(SignUp);
+export default SignUp;
