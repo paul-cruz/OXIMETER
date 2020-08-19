@@ -1,21 +1,22 @@
+import 'react-perfect-scrollbar/dist/css/styles.css';
 import React from 'react';
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
-import Error from "./components/Error";
-import Dashboard from "./views/Dashboard";
-import { positions, Provider } from "react-alert";
-import AlertMUITemplate from 'react-alert-template-mui';
-import Home from './views/Home';
-
-const alert_options = {
-    position: positions.MIDDLE
-};
+import { ThemeProvider } from '@material-ui/core';
+import routes from './routes';
+import theme from './theme';
+import GlobalStyles from './utils/GlobalStyles';
 
 function App() {
+    const routing = useRoutes(routes);
+
     return (
         <AuthContext>
-            <Router>
+            <ThemeProvider theme={theme}>
+                <GlobalStyles />
+                {routing}
+            {/*<Router>
                 <Switch>
                     <Route exact path="/home">
                         <Provider template={AlertMUITemplate} {...alert_options}>
@@ -32,7 +33,8 @@ function App() {
                         <Error err="404" />
                     </Route>
                 </Switch>
-            </Router>
+            </Router>*/}
+            </ThemeProvider>
         </AuthContext>
     );
 }
