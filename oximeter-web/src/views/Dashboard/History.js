@@ -48,7 +48,7 @@ const History = ({ data, className, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map((item, index) => (
+              {data.sort(function(a, b){return b.timestamp-a.timestamp}).map((item, index) => (
                 <TableRow
                   hover
                   key={index}
