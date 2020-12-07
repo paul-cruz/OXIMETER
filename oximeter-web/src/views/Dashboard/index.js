@@ -45,7 +45,7 @@ class DashboardC extends React.Component {
     }
 
     render() {
-        const timestamp = this.state.last_data.timestamp ? this.state.last_data.timestamp.seconds : ''
+        const timestamp = this.state.last_data.timestamp ? new Date(this.state.last_data.timestamp.seconds * 1000).toLocaleDateString()  : ''
         const { classes } = this.props;
         return (
             <Page
@@ -82,7 +82,7 @@ class DashboardC extends React.Component {
                             xl={4}
                             xs={12}
                         >
-                            <Timestamp value={new Date(timestamp * 1000).toLocaleDateString()} />
+                            <Timestamp value={timestamp} />
                         </Grid>
                         <Grid
                             item
