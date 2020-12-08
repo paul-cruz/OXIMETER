@@ -1,89 +1,139 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Configuración de la aplicación web
 
-## Available Scripts
+_Para la aplicación web se tiene un proyecto de ReactJS, el cual es simple de iniciar, solo se deben configurar ciertos parametros y estará listo_
 
-In this project directory, you can run:
+## Productos y tecnologías 🛠️
+
+* [ReactJS](https://es.reactjs.org/) - Biblioteca de JavaScript para construir interfaces de usuario
+* [Firebase, Auth](https://firebase.google.com/docs/auth?hl=es-419) - Servicio de autenticación de usuarios
+* [Firebase, Firestore](https://firebase.google.com/docs/firestore) - Sistema de persistencia a base de documentos
+* [Google App Engine](https://cloud.google.com/appengine) - Hosting para aplicación web
+* [node v12.14.1+](https://nodejs.org/) - JavaScript runtime
+* [npm 6.14.6+](https://www.npmjs.com/package/install) - Sistema de gestión de paquetes para Node.js
+
+### Pre-requisitos 📋
+
+_Para esta sección se deben tener los siguientes requisitos:_
+* [Proyecto de Firebase iniciado](https://console.firebase.google.com/) - La plataforma de nube dónde se aloja y consume servicios el proyecto
+* [node v12.14.1+](https://nodejs.org/) - JavaScript runtime
+* [npm 6.14.6+](https://www.npmjs.com/package/install) - Sistema de gestión de paquetes para Node.js
+
+## Comenzando 🚀
+
+_Para iniciar se deben acceder al nivel del archivo [package.json](https://github.com/paul-cruz/OXIMETER/blob/master/oximeter-web/package.json) donde se llevarán acabo los siguientes pasos:_
+
+_Para crear un nuevo proyecto en GCP:_
+
+1. Instalar las dependencias del proyecto, ejecutando:
+```
+$ npm install
+```
+2. Ir a la [consola de Firebase](https://console.firebase.google.com/)
+3. En la página de inicio se debe **Web** para iniciar el registro de nuestra app.
+4. Ya en la ventana se debe ingresar el nombre de nuestra aplicación y dar en **Registrar aplicación**.
+5. Una vez obtenido el SDK de firebase se crear un archivo llamado firebaseConfig.js en src/resources/ y escribir lo siguiente con los valores de tu SDK en el JSON de firebase.initializeApp.
+```
+import * as firebase from "firebase/app";
+import "firebase/auth";
+
+const app = firebase.initializeApp({
+    apiKey: "your-api-key",
+    authDomain: "[APP_NAME].firebaseapp.com",
+    databaseURL: "https://[APP_NAME].firebaseio.com",
+    projectId: "[PROJECT_ID]",
+    storageBucket: "[APP_NAME].appspot.com",
+    messagingSenderId: "",
+    appId: ""
+});
+
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+const microsoftAuthProvider = new firebase.auth.OAuthProvider('microsoft.com');
+
+export {app, googleAuthProvider, facebookAuthProvider, microsoftAuthProvider}; 
+```
+6. Ahora da click en **Ir a la consola**.
+7. Después crea dos archivos, llamados .env.development y .env.production, los cuales tendrán las variables de entorno necesarias para las conexiones.
+.env.development
+```
+REACT_APP_URL=http://localhost:3000/
+```
+.env.production
+```
+REACT_APP_URL=https://[PROJECT_ID].uc.r.appspot.com/
+```
+
+**Ahora se procederá a configurar el servicio de autentificación:**
+
+1. Ve a la página de la [Consola de Firebase](https://console.firebase.google.com/).
+2. Haz click en el menú en **Develop** -> **Authentication** > **Sign-in method**
+3. Habilita el proveedor de **Email/Password** y el de **Google**.
+4. Ahora baja a la sección de **Authorized domains** y da click en **Add domain**.
+5. Agrega el dominio de tu aplicación App Engine, debe tener la siguiente forma: [PROJECT_ID].uc.r.appspot.com
+
+## Inicio de la aplicación 🔧
+
+_Este proyecto fue iniciado con [Create React App](https://github.com/facebook/create-react-app)._
+_El proyecto tiene disponibles varios scripts, pero el que se recomieda para probar la aplicación es **npm run start:dev** y para crear la carpeta build de despliegue **npm run build:prod**_
+
+### Scripts Disponibles
+
+En el directorio de este proyecto, puedes ejecutar:
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Corre la aplicación en modo de desarollo.<br />
+Abre [http://localhost:3000](http://localhost:3000) para ver en el navegador.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+La página se refrescará .<br />
+Además podrás ver los errores de en la consola.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Lanzar test de ejecución de manera interactiva.<br />
+Ver la sección de [running tests](https://facebook.github.io/create-react-app/docs/running-tests) para más información.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Construye la aplicación para el entorno de producción con la carpeta `build`.<br />
+Se agrupa correctamente React en el modo de producción y optimiza la compilación para obtener el mejor rendimiento.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+La compilación se minimiza y los nombres de los archivos incluyen los hash.<br />
+Tu aplicación está lista para el despliegue!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Mira la sección de [despliegue](https://github.com/paul-cruz/OXIMETER/tree/master/cloud-settings/README.md) para más información.
 
 ### `npm run start:dev`
 
-Runs the app with the env variables in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Corre la aplicación en modo de desarollo con las variables de entorno para desarrollo.<br />
+Abre [http://localhost:3000](http://localhost:3000) para ver en el navegador.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+La página se refrescará .<br />
+Además podrás ver los errores de en la consola.
 
 ### `npm run start:prod`
 
-Runs the app with the env variables in the production mode.<br />
-Open [http://oximeter.mexbalia.mx](http://oximeter.mexbalia.mx) to view it in the browser.
+Corre la aplicación en modo de desarollo con las variables de entorno para producción.<br />
+Abre [http://oximeter.mexbalia.mx](http://oximeter.mexbalia.mx) para ver en el navegador.
 
 ### `npm run build:prod`
 
-Builds the app for production with the env variables to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Construye la aplicación para el entorno de producción con la carpeta `build`con las variables de entorno para producción.<br />
+Se agrupa correctamente React en el modo de producción y optimiza la compilación para obtener el mejor rendimiento.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed perfectly!
+La compilación se minimiza y los nombres de los archivos incluyen los hash.<br />
+Tu aplicación está lista para el despliegue!
 
-### `npm run eject`
+## Despliegue 📦
+_Para obtener la carpeta **build** se debe acceder al nivel del archivo package.json y ahí correr el comando **npm run build:prod** el cual creará la carpea con todo el ambiente optimizado para producción_
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+1. Una vez obtenida la carpeta build de la aplicación web se debe copiar al mismo nivel del archivo [app.yaml](https://github.com/paul-cruz/OXIMETER/blob/master/cloud-settings/app/app.yaml)
+2. Después con la shell se debe ir a donde está el archivo app.yaml
+3. En la shell se debe ejecutar:
+```
+$ gcloud app deploy
+```
+4. Ve a la [Consola de GCP](https://console.cloud.google.com/)
+5. En el menú da click en **App Engine**
+6. Verifíca que el despliegue se encuentre en la consola.
+7. Verifica el funcionamiento de la aplicación accediendo al link que aparece en la consola, tiene una forma como la siguiente: "[PROJECT_ID].uc.r.appspot.com".
