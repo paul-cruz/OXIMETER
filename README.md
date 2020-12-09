@@ -17,6 +17,10 @@ _A continuación se muestra el orden en el que se debe ejecutar cada paso para p
 * [Device Settings](https://github.com/paul-cruz/OXIMETER/tree/master/ino-project) - Diagrama esquemático y código para configurar el dispositivo
 * [Front-End](https://github.com/paul-cruz/OXIMETER/tree/master/oximeter-web) - Aplicación Web desarrollada en ReactJS
 
+## Tutoriales 📖
+_Para que puedas ver como se hace la implementación del proyecto en Mexbalia se prepararon una serie de tutoriales los cuales puedes visualizar en el siguiente enlace:_
+* [Pulsioxímetro](https://www.youtube.com/playlist?list=PL0AO2J9xYbcuKrlOZTk8ZvWl4suMi1Ozz) - Lista de reproducción con los tutoriales
+
 ## Licencia 📄
 
 Este proyecto está bajo la Licencia (GNU General Public License v3.0) - mira el archivo [LICENSE](LICENSE) para detalles
