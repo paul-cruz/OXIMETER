@@ -27,7 +27,7 @@ _Ya teniendo el dispositivo montado se procederá a la programación del disposi
 * [WiFiNINA by Arduino](https://www.arduino.cc/en/Reference/WiFiNINA)
 * [SparkFun_MAX3010x_Sensor_Library](https://github.com/sparkfun/SparkFun_MAX3010x_Sensor_Library)
 * [Google Cloud IoT Core JWT by Vladimir Korukov](https://www.arduino.cc/reference/en/libraries/google-cloud-iot-core-jwt/)
-* [U8g2](https://www.arduino.cc/reference/en/libraries/u8g2/)
+* [U8g2 by oliver](https://www.arduino.cc/reference/en/libraries/u8g2/)
 
 2. Una vez instaladas las librerias se debe configurar el archivo [secrets.h](https://github.com/paul-cruz/OXIMETER/blob/master/ino-project/oximeter/secrets.h) llenando lo siguiente:.
 ```
