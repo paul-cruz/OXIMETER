@@ -30,7 +30,9 @@ _Ya teniendo el dispositivo montado se procederá a la programación del disposi
 * [U8g2 by oliver](https://www.arduino.cc/reference/en/libraries/u8g2/)
 * [MQTT by Joel Gaehwiler](https://www.arduino.cc/reference/en/libraries/mqtt/)
 
-2. Una vez instaladas las librerias se debe configurar el archivo [secrets.h](https://github.com/paul-cruz/OXIMETER/blob/master/ino-project/oximeter/secrets.h) llenando lo siguiente:.
+2. Ahora se debe instalar la tarjeta Nano 33 IoT, para esto se debe ir a **Herramientas** -> **placa** -> **Gestor de tarjetas** e instalar **Arduino samd boards (32-bits arm cortex-m0+) by Arduino**
+
+3. Una vez instaladas las librerias y la tarjeta se debe configurar el archivo [secrets.h](https://github.com/paul-cruz/OXIMETER/blob/master/ino-project/oximeter/secrets.h) llenando lo siguiente:.
 ```
 #define SECRET_SSID "WIFI_SSID" - Aquí se debe escribir el nombre de la red a la que se desea conectar
 #define SECRET_PASS "WIFI_PASSWORD" - Aquí se debe escribir la contraseña de la red a la que se desea conectar
@@ -49,4 +51,4 @@ _[-configuraciones de la nube-](https://github.com/paul-cruz/OXIMETER/tree/maste
 
 _[-create_device.sh-](https://github.com/paul-cruz/OXIMETER/blob/master/cloud-settings/create_device.sh)_
 
-3. Finalmente en el IDE de Arduino se debe dar en **Subir** paara programar el dispositivo con el sketch.
+4. Finalmente en el IDE de Arduino se debe dar en **Subir** paara programar el dispositivo con el sketch.
