@@ -17,7 +17,7 @@ _Para esta sección se deben tener los siguientes requisitos:_
 
 ## Comenzando 🚀
 
-_Para iniciar se debe crear un nuevo proyecto de GCP o usar uno ue ya tengas configurado, es importante que este cuente con una facturación activa, ya sea por cobro a tarjeta o créditos_
+_Para iniciar se debe crear un nuevo proyecto de GCP o usar uno que ya tengas configurado, es importante que este cuente con una facturación activa, ya sea por cobro a tarjeta o créditos_
 
 _Para crear un nuevo proyecto en GCP:_
 
