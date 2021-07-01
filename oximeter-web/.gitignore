@@ -18,7 +18,6 @@
 .env.test.local
 .env.production.local
 .env.*
-src/resources/firebaseConfig.js
 
 npm-debug.log*
 yarn-debug.log*
